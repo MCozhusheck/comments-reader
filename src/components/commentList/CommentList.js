@@ -5,44 +5,13 @@ import MainContainer from './mainContainer';
 import { connect } from 'react-redux';
 import { fetchComments } from '../../redux/comments/commentsActions';
 
-const URL = 'http://jsonplaceholder.typicode.com/comments';
-
 class CommentList extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      error: null,
-      isLoaded: false,
-      comments: null
-    };
-  }
   componentDidMount() {
-    // fetch(URL)
-    //   .then(res => res.json())
-    //   .then(
-    //     res =>
-    //       this.setState({
-    //         comments: res
-    //           .filter(element => element.id <= 20)
-    //           .map(el => {
-    //             return {
-    //               title: el.name,
-    //               email: el.email,
-    //               body: el.body.slice(0, 20),
-    //               id: el.id
-    //             };
-    //           }),
-    //         isLoaded: true
-    //       }),
-    //     error => {
-    //       this.setState({ error });
-    //     }
-    //   );
-    this.props.fetchComments();
+    const { fetchComments } = this.props;
+    fetchComments();
   }
   render() {
-    const { comments } = this.state;
-    console.log(this.props);
+    const { comments } = this.props;
     return (
       <MainContainer>
         <CommentListContainer>
@@ -68,8 +37,8 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-const mapStateToProps = state => {
-  return state;
+const mapStateToProps = ({ comments }) => {
+  return comments;
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CommentList);

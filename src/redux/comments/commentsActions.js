@@ -33,7 +33,16 @@ export const fetchComments = () => {
     axios
       .get(URL)
       .then(res => {
-        const comments = res.data;
+        const comments = res.data
+          .filter(element => element.id <= 20)
+          .map(el => {
+            return {
+              title: el.name,
+              email: el.email,
+              body: el.body.slice(0, 20),
+              id: el.id
+            };
+          });
         dispatch(fetchCommentsSuccess(comments));
       })
       .catch(error => {
