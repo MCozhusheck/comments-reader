@@ -2,6 +2,8 @@ import React from 'react';
 import SingleComment from './../singleComment/SingleComment';
 import CommentListContainer from './commentListStyles';
 import MainContainer from './mainContainer';
+import { connect } from 'react-redux';
+import { fetchComments } from '../../redux/comments/commentsActions';
 
 const URL = 'http://jsonplaceholder.typicode.com/comments';
 
@@ -15,30 +17,32 @@ class CommentList extends React.Component {
     };
   }
   componentDidMount() {
-    fetch(URL)
-      .then(res => res.json())
-      .then(
-        res =>
-          this.setState({
-            comments: res
-              .filter(element => element.id <= 20)
-              .map(el => {
-                return {
-                  title: el.name,
-                  email: el.email,
-                  body: el.body.slice(0, 20),
-                  id: el.id
-                };
-              }),
-            isLoaded: true
-          }),
-        error => {
-          this.setState({ error });
-        }
-      );
+    // fetch(URL)
+    //   .then(res => res.json())
+    //   .then(
+    //     res =>
+    //       this.setState({
+    //         comments: res
+    //           .filter(element => element.id <= 20)
+    //           .map(el => {
+    //             return {
+    //               title: el.name,
+    //               email: el.email,
+    //               body: el.body.slice(0, 20),
+    //               id: el.id
+    //             };
+    //           }),
+    //         isLoaded: true
+    //       }),
+    //     error => {
+    //       this.setState({ error });
+    //     }
+    //   );
+    this.props.fetchComments();
   }
   render() {
     const { comments } = this.state;
+    console.log(this.props);
     return (
       <MainContainer>
         <CommentListContainer>
@@ -58,4 +62,14 @@ class CommentList extends React.Component {
   }
 }
 
-export default CommentList;
+const mapDispatchToProps = dispatch => {
+  return {
+    fetchComments: () => dispatch(fetchComments())
+  };
+};
+
+const mapStateToProps = state => {
+  return state;
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(CommentList);
