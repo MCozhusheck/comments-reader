@@ -1,6 +1,6 @@
 import React from 'react';
-import SingleCommnet from './../singleComment/SingleComment';
 import SingleComment from './../singleComment/SingleComment';
+import CommentListContainer from './commentListStyles';
 
 const URL = 'http://jsonplaceholder.typicode.com/comments';
 
@@ -39,7 +39,7 @@ class CommentList extends React.Component {
   render() {
     const { comments } = this.state;
     return (
-      <div>
+      <CommentListContainer>
         {comments &&
           comments.length > 0 &&
           comments.map(el => (
@@ -50,7 +50,7 @@ class CommentList extends React.Component {
               key={el.id}
             />
           ))}
-      </div>
+      </CommentListContainer>
     );
   }
 }

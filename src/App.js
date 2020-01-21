@@ -1,13 +1,6 @@
 import React from 'react';
-import './App.css';
 import CommentList from './components/commentList/CommentList';
-import { createGlobalStyle } from 'styled-components';
-
-const GlobalStyles = createGlobalStyle`
-  body {
-    background-color: yellow;
-  }
-`;
+import GlobalStyles from './defaultStyles';
 
 class App extends React.Component {
   render() {
