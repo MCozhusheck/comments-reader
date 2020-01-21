@@ -1,6 +1,7 @@
 import React from 'react';
 import SingleComment from './../singleComment/SingleComment';
 import CommentListContainer from './commentListStyles';
+import MainContainer from './mainContainer';
 
 const URL = 'http://jsonplaceholder.typicode.com/comments';
 
@@ -39,18 +40,20 @@ class CommentList extends React.Component {
   render() {
     const { comments } = this.state;
     return (
-      <CommentListContainer>
-        {comments &&
-          comments.length > 0 &&
-          comments.map(el => (
-            <SingleComment
-              title={el.title}
-              email={el.email}
-              content={el.body}
-              key={el.id}
-            />
-          ))}
-      </CommentListContainer>
+      <MainContainer>
+        <CommentListContainer>
+          {comments &&
+            comments.length > 0 &&
+            comments.map(el => (
+              <SingleComment
+                title={el.title}
+                email={el.email}
+                content={el.body}
+                key={el.id}
+              />
+            ))}
+        </CommentListContainer>
+      </MainContainer>
     );
   }
 }
