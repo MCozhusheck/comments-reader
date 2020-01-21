@@ -1,5 +1,6 @@
 import React from 'react';
 import SingleCommnet from './../singleComment/SingleComment';
+import SingleComment from './../singleComment/SingleComment';
 
 const URL = 'http://jsonplaceholder.typicode.com/comments';
 
@@ -24,7 +25,8 @@ class CommentList extends React.Component {
                 return {
                   title: el.name,
                   email: el.email,
-                  body: el.body.slice(0, 20)
+                  body: el.body.slice(0, 20),
+                  id: el.id
                 };
               }),
             isLoaded: true
@@ -35,14 +37,20 @@ class CommentList extends React.Component {
       );
   }
   render() {
+    const { comments } = this.state;
     return (
       <div>
         Comments lists
-        <SingleCommnet
-          title={'some title'}
-          email={'random email'}
-          content={'lorem ipsum'}
-        />
+        {comments &&
+          comments.length > 0 &&
+          comments.map(el => (
+            <SingleComment
+              title={el.title}
+              email={el.email}
+              content={el.body}
+              key={el.id}
+            />
+          ))}
       </div>
     );
   }
