@@ -1,5 +1,5 @@
 import React from 'react';
-import SingleCommnet from './../singleComment';
+import SingleCommnet from './../singleComment/SingleComment';
 
 class CommentList extends React.Component {
   constructor(props) {
