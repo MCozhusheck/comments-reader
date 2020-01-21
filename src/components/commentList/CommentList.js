@@ -40,7 +40,6 @@ class CommentList extends React.Component {
     const { comments } = this.state;
     return (
       <div>
-        Comments lists
         {comments &&
           comments.length > 0 &&
           comments.map(el => (

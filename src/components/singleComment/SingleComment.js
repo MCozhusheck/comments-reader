@@ -1,12 +1,26 @@
 import React from 'react';
+import styled from 'styled-components';
+
+const Title = styled.h3`
+  color: red;
+`;
+const CommentContainer = styled.div`
+  border: 1px solid black;
+`;
+const Email = styled.p`
+  color: blue;
+`;
+const Content = styled.p`
+  color: green;
+`;
 
 const SingleComment = ({ title, email, content }) => {
   return (
-    <div>
-      <h3>{title}</h3>
-      <p>{email}</p>
-      <p>{content}</p>
-    </div>
+    <CommentContainer>
+      <Title>{title}</Title>
+      <Email>{email}</Email>
+      <Content>{content}</Content>
+    </CommentContainer>
   );
 };
 
