@@ -9,7 +9,7 @@ class Favourites extends React.Component {
   //   fetchCommentsIfNeeded();
   // }
   render() {
-    const { favComments } = this.props;
+    const favComments = this.props.comments.filter(el => el.isFav);
     return (
       <>
         <h1>Home</h1>
@@ -19,8 +19,8 @@ class Favourites extends React.Component {
   }
 }
 
-const mapStateToProps = ({ favComments }) => {
-  return favComments;
+const mapStateToProps = ({ comments }) => {
+  return comments;
 };
 
 export default connect(mapStateToProps)(Favourites);

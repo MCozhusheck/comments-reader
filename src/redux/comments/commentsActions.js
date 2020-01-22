@@ -61,11 +61,8 @@ export const fetchComments = () => {
   };
 };
 
-const shouldFetchComments = state => {
-  if (state.comments.length > 0) {
-    return false;
-  }
-  return true;
+const shouldFetchComments = ({ comments: { comments } }) => {
+  return !(comments.length > 0);
 };
 
 export const fetchCommentsIfNeeded = () => (dispatch, getState) => {
