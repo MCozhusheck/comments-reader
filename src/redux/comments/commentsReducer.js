@@ -19,12 +19,14 @@ const reducer = (state = initialState, action) => {
       };
     case FETCH_COMMENTS_SUCCESS:
       return {
+        ...state,
         loading: false,
         comments: action.payload,
         error: ''
       };
     case FETCH_COMMENTS_FAILURE:
       return {
+        ...state,
         loading: false,
         comments: [],
         error: action.payload

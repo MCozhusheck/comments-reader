@@ -1,7 +1,8 @@
 import {
   FETCH_COMMENTS_REQUEST,
   FETCH_COMMENTS_SUCCESS,
-  FETCH_COMMENTS_FAILURE
+  FETCH_COMMENTS_FAILURE,
+  ADD_COMMENT_TO_FAV
 } from './commentTypes';
 import axios from 'axios';
 
@@ -24,6 +25,13 @@ export const fetchCommentsFailure = error => {
   return {
     type: FETCH_COMMENTS_FAILURE,
     payload: error
+  };
+};
+
+export const addToFav = id => {
+  return {
+    type: ADD_COMMENT_TO_FAV,
+    payload: id
   };
 };
 
@@ -50,4 +58,17 @@ export const fetchComments = () => {
         dispatch(fetchCommentsFailure(errorMsg));
       });
   };
+};
+
+const shouldFetchComments = state => {
+  if (state.comments.length > 0) {
+    return false;
+  }
+  return true;
+};
+
+export const fetchCommentsIfNeeded = () => (dispatch, getState) => {
+  if (shouldFetchComments(getState())) {
+    return dispatch(fetchComments());
+  }
 };
