@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import SingleCommentContainer from './singleCommentStyles';
 import { connect } from 'react-redux';
@@ -15,18 +15,16 @@ const Content = styled.p`
 `;
 
 const SingleComment = ({ data, addToFav }) => {
-  const [like, setLike] = useState(false);
   return (
     <SingleCommentContainer>
       <Title>{data.title}</Title>
       <Email>{data.email}</Email>
       <Content>{data.content}</Content>
-      {like ? (
-        <button>Remove from favourite</button>
+      {data.isFav ? (
+        <p>Favourite comment</p>
       ) : (
         <button
           onClick={() => {
-            setLike(true);
             addToFav(data);
           }}
         >
