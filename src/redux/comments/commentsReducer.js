@@ -33,15 +33,11 @@ const reducer = (state = initialState, action) => {
         error: action.payload
       };
     case MARK_COMMENT_AS_FAV:
-      console.log('MARK_COMMENT_AS_FAV: ', action.payload);
-      //const likedComment = {...action.payload, action.payload.isFav: true};
-      action.payload.isFav = true;
-      const index = state.comments.findIndex(el => el.id === action.payload.id);
-      const newComments = Object.assign(state.comments);
-      newComments[index] = action.payload;
       return {
         ...state,
-        comments: newComments
+        comments: state.comments.map(el =>
+          el.id === action.payload.id ? { ...el, isFav: true } : el
+        )
       };
     default:
       return state;
