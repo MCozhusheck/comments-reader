@@ -1,5 +1,5 @@
 import React from 'react';
-import { Home } from './pages';
+import { Home, Favourites } from './pages';
 import GlobalStyles from './defaultStyles';
 import { Provider } from 'react-redux';
 import store from './redux/store';
@@ -28,7 +28,7 @@ class App extends React.Component {
               <Home />
             </Route>
             <Route path="/favourites">
-              <p>favs</p>
+              <Favourites />
             </Route>
             <Route parh="/add-comment">
               <p>add comments</p>

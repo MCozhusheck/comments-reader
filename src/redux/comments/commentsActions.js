@@ -2,7 +2,7 @@ import {
   FETCH_COMMENTS_REQUEST,
   FETCH_COMMENTS_SUCCESS,
   FETCH_COMMENTS_FAILURE,
-  ADD_COMMENT_TO_FAV
+  MARK_COMMENT_AS_FAV
 } from './commentTypes';
 import axios from 'axios';
 
@@ -28,10 +28,10 @@ export const fetchCommentsFailure = error => {
   };
 };
 
-export const addToFav = id => {
+export const addToFav = comment => {
   return {
-    type: ADD_COMMENT_TO_FAV,
-    payload: id
+    type: MARK_COMMENT_AS_FAV,
+    payload: comment
   };
 };
 
@@ -48,7 +48,8 @@ export const fetchComments = () => {
               title: el.name,
               email: el.email,
               body: el.body.slice(0, 20),
-              id: el.id
+              id: el.id,
+              isFav: false
             };
           });
         dispatch(fetchCommentsSuccess(comments));

@@ -17,7 +17,8 @@ class CommentList extends React.Component {
                   title: el.title,
                   email: el.email,
                   content: el.body,
-                  id: el.id
+                  id: el.id,
+                  isFav: el.isFav
                 }}
                 key={el.id}
               />

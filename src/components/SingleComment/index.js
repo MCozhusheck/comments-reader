@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import SingleCommentContainer from './singleCommentStyles';
 import { connect } from 'react-redux';
-import { addToFav } from './../../redux/favComments/favCommentsActions';
+import { addToFav } from './../../redux/comments/commentsActions';
 
 const Title = styled.h3`
   color: red;
