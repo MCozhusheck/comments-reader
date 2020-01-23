@@ -1,5 +1,5 @@
 import React from 'react';
-import { Home, Favourites } from './pages';
+import { Home, Favourites, AddComment } from './pages';
 import GlobalStyles from './defaultStyles';
 import { Provider } from 'react-redux';
 import store from './redux/store';
@@ -31,7 +31,7 @@ class App extends React.Component {
               <Favourites />
             </Route>
             <Route parh="/add-comment">
-              <p>add comments</p>
+              <AddComment />
             </Route>
           </Switch>
         </BrowserRouter>

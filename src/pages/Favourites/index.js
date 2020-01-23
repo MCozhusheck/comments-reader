@@ -12,7 +12,7 @@ class Favourites extends React.Component {
     const favComments = this.props.comments.filter(el => el.isFav);
     return (
       <>
-        <h1>Home</h1>
+        <h1>Favourites</h1>
         <CommentList comments={favComments} />
       </>
     );
