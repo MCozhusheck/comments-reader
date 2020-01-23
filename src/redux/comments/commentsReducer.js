@@ -2,7 +2,8 @@ import {
   FETCH_COMMENTS_REQUEST,
   FETCH_COMMENTS_SUCCESS,
   FETCH_COMMENTS_FAILURE,
-  MARK_COMMENT_AS_FAV
+  MARK_COMMENT_AS_FAV,
+  CREATE_NEW_COMMENT
 } from './commentTypes';
 
 const initialState = {
@@ -38,6 +39,11 @@ const reducer = (state = initialState, action) => {
         comments: state.comments.map(el =>
           el.id === action.payload.id ? { ...el, isFav: true } : el
         )
+      };
+    case CREATE_NEW_COMMENT:
+      return {
+        ...state,
+        comments: [...state.comments, action.payload]
       };
     default:
       return state;

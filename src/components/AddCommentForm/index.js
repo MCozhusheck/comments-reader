@@ -1,5 +1,7 @@
 import React from 'react';
 import AddCommentContainer from './StyledAddComment';
+import { connect } from 'react-redux';
+import { createNewComment } from '../../redux/comments/commentsActions';
 
 class AddCommentForm extends React.Component {
   constructor(props) {
@@ -33,10 +35,23 @@ class AddCommentForm extends React.Component {
     return re.test(this.state.contentValue);
   };
   handleSubmit = e => {
-    console.log('hello');
+    const { createNewComment, comments } = this.props;
+    let maxId = comments.reduce(
+      (max, comment) => (comment.id > max ? comment.id : max),
+      comments[0].id
+    );
+    console.log(maxId);
     e.preventDefault();
     if (this.isTitleValid() && this.isEmailValid() && this.isContentValid()) {
-      this.setState({ isValid: true }, () => console.log(this.state.isValid));
+      const newComment = {
+        title: this.state.titleValue,
+        email: this.state.emailValue,
+        body: this.state.contentValue,
+        id: ++maxId,
+        isFav: false
+      };
+
+      this.setState({ isValid: true }, () => createNewComment(newComment));
     }
   };
   render() {
@@ -80,4 +95,14 @@ class AddCommentForm extends React.Component {
   }
 }
 
-export default AddCommentForm;
+const mapDispatchToProps = dispatch => {
+  return {
+    createNewComment: newComment => dispatch(createNewComment(newComment))
+  };
+};
+
+const mapStateToProps = ({ comments }) => {
+  return comments;
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddCommentForm);

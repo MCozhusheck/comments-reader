@@ -2,7 +2,8 @@ import {
   FETCH_COMMENTS_REQUEST,
   FETCH_COMMENTS_SUCCESS,
   FETCH_COMMENTS_FAILURE,
-  MARK_COMMENT_AS_FAV
+  MARK_COMMENT_AS_FAV,
+  CREATE_NEW_COMMENT
 } from './commentTypes';
 import axios from 'axios';
 
@@ -31,6 +32,13 @@ export const fetchCommentsFailure = error => {
 export const addToFav = comment => {
   return {
     type: MARK_COMMENT_AS_FAV,
+    payload: comment
+  };
+};
+
+export const createNewComment = comment => {
+  return {
+    type: CREATE_NEW_COMMENT,
     payload: comment
   };
 };
