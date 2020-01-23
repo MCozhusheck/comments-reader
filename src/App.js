@@ -3,13 +3,13 @@ import { Home, Favourites, AddComment } from './pages';
 import GlobalStyles from './defaultStyles';
 import { Provider } from 'react-redux';
 import store from './redux/store';
-import { BrowserRouter, Route, Link, Switch } from 'react-router-dom';
+import { HashRouter, Route, Link, Switch } from 'react-router-dom';
 
 class App extends React.Component {
   render() {
     return (
       <Provider store={store}>
-        <BrowserRouter>
+        <HashRouter>
           <ul>
             <li>
               <Link to="/">Home</Link>
@@ -24,17 +24,12 @@ class App extends React.Component {
           <GlobalStyles />
 
           <Switch>
-            <Route path="/" exact={true}>
-              <Home />
-            </Route>
-            <Route path="/favourites">
-              <Favourites />
-            </Route>
-            <Route parh="/add-comment">
-              <AddComment />
-            </Route>
+            <Route exact path="/" component={Home} />
+            <Route exact path="/favourites" component={Favourites} />
+            <Route exact parh="/add-comment" component={AddComment} />
+            <Route component={() => <div>404 Not found </div>} />
           </Switch>
-        </BrowserRouter>
+        </HashRouter>
       </Provider>
     );
   }
