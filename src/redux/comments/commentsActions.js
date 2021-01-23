@@ -63,7 +63,7 @@ export const fetchComments = () => {
             return {
               title: el.name,
               email: el.email,
-              body: el.body.slice(0, 20),
+              body: el.body,
               id: el.id,
               isFav: false
             };

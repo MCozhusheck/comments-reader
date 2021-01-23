@@ -16,7 +16,7 @@ class CommentList extends React.Component {
                 data={{
                   title: el.title,
                   email: el.email,
-                  content: el.body,
+                  content: el.body.slice(0,20).concat('...'),
                   id: el.id,
                   isFav: el.isFav
                 }}
